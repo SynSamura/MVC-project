@@ -2,6 +2,7 @@
 
 namespace application\core;
 
+use application\core\View;
 class Router
 {
 
@@ -17,13 +18,26 @@ class Router
         //  debug(arr);
     }
 
+    /**
+     * Заполняет роутер маршрутами
+     *
+     * @param $route
+     * @param $params
+     * @return void
+     */
     public function add($route, $params)
     {
         $route = '#^' . $route . '$#';
         $this->routes[$route] = $params;
     }
 
-    public function match() {
+    /**
+     * Проверяет существование маршрута
+     *
+     * @return bool
+     */
+    public function match()
+    {
         $url = trim($_SERVER['REQUEST_URI'], '/');
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
@@ -34,23 +48,28 @@ class Router
         return false;
     }
 
+    /**
+     *Запуск контроллера
+     *
+     * @return void
+     */
     public function run()
     {
         if ($this->match()) {
-            $path = 'application\controllers\\'.ucfirst($this->params['controllers']).'Controller';
-            if(class_exists($path)){
-                $action = $this->params['action'].'Action';
-                if (method_exists($path, $action)){
+            $path = 'application\controllers\\' . ucfirst($this->params['controllers']) . 'Controller';
+            if (class_exists($path)) {
+                $action = $this->params['action'] . 'Action';
+                if (method_exists($path, $action)) {
                     $controller = new $path($this->params);
                     $controller->$action();
-                }else {
-                    echo 'Не найден экшен: '.$action;
+                } else {
+                    View::errorCode(404);
                 }
-            }else {
-                echo 'Не найден контроллер: '.$path;
+            } else {
+                View::errorCode(404);
             }
-        }else {
-            echo ('Маршрут не найден');
+        } else {
+            View::errorCode(403);
         }
     }
 }
