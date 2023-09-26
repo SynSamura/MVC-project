@@ -13,5 +13,4 @@ return [
         'controllers' => 'account',
         'action' => 'register',
     ],
-
 ];

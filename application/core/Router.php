@@ -3,6 +3,7 @@
 namespace application\core;
 
 use application\core\View;
+
 class Router
 {
 
@@ -69,7 +70,7 @@ class Router
                 View::errorCode(404);
             }
         } else {
-            View::errorCode(403);
+            View::errorCode(404);
         }
     }
 }

@@ -27,15 +27,17 @@ class View
         }
     }
 
-    public function redirect($url) {
-        header('location: '.$url);
+    public function redirect($url)
+    {
+        header('location: ' . $url);
         exit;
     }
 
-    public static function errorCode($code) {
+    public static function errorCode($code)
+    {
         http_response_code($code);
-        $path = 'application/views/errors/'.$code.'.php';
-        if(file_exists($path)){
+        $path = 'application/views/errors/' . $code . '.php';
+        if (file_exists($path)) {
             require $path;
         }
         exit;
