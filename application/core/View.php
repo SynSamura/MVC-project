@@ -9,6 +9,13 @@ class View
     public $route;
     public $layout = 'default';
 
+
+    /**
+     * Конструкт это магический метод
+     *
+     *
+     * @param $route
+     */
     public function __construct($route)
     {
         $this->route = $route;
@@ -43,4 +50,27 @@ class View
         exit;
     }
 
-}
+    /**
+     * Вывод сообщения JS
+     *
+     * @param $status
+     * @param $message
+     * @return void
+     */
+    public function message($status, $message) {
+        exit(json_encode(['status' => $status, 'message' => $message]));
+
+    }
+
+    /**
+     * Редирект для JS
+     * JS не видно
+     * @param $url
+     * @return void
+     *
+     */
+    public function location($url)
+    {
+        exit(json_encode(['url' => $url]));
+    }
+    }

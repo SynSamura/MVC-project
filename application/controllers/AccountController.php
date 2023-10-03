@@ -8,6 +8,9 @@ class AccountController extends Controller
 {
     public function loginAction()
     {
+        if (!empty($_POST)) {
+            $this->view->location('account/login');
+        }
         $this->view->render('Вход');
     }
 

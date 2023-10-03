@@ -1,6 +1,6 @@
 <?php
 
-return[
+return [
     'host' => 'localhost',
     'name' => 'test',
     'password' => '',

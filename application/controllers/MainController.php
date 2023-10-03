@@ -3,16 +3,16 @@
 namespace application\controllers;
 
 use application\core\Controller;
-use application\lib\Db;
 
 class MainController extends Controller
 {
-    public function indexAction()
-    {
+    public function indexAction() {
+        $result = $this->model->genNews();
+        $vars = [
+                'news' => $result,
+        ];
 
-        $db = new Db;
 
-        $this->view->render('Главная страница');
-        //echo 'Главная страница';
+        $this->view->render('Главная страница', $vars);
     }
 }
