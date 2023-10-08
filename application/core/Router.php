@@ -1,12 +1,8 @@
 <?php
-
-namespace application\core;
-
-use application\core\View;
+namespace App\core;
 
 class Router
 {
-
     protected $routes = [];
     protected $params = [];
 
@@ -17,7 +13,6 @@ class Router
             $this->add($key, $val);
         };
     }
-
     /**
      * Заполняет роутер маршрутами
      *
@@ -30,7 +25,6 @@ class Router
         $route = '#^' . $route . '$#';
         $this->routes[$route] = $params;
     }
-
     /**
      * Проверяет существование маршрута
      *
@@ -47,7 +41,6 @@ class Router
         }
         return false;
     }
-
     /**
      *Запуск контроллера
      *
@@ -56,7 +49,7 @@ class Router
     public function run()
     {
         if ($this->match()) {
-            $path = 'application\controllers\\' . ucfirst($this->params['controllers']) . 'Controller';
+            $path = 'App\controllers\\' . ucfirst($this->params['controllers']) . 'Controller';
             if (class_exists($path)) {
                 $action = $this->params['action'] . 'Action';
                 if (method_exists($path, $action)) {

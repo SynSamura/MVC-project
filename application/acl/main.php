@@ -4,7 +4,7 @@ return [
     'all' => [
         'login',
         'register',
-        '/'
+        'index'
     ],
     'authorize' => [
         //

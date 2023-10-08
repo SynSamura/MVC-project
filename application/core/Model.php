@@ -1,8 +1,8 @@
 <?php
 
-namespace application\core;
+namespace App\core;
 
-use application\lib\Db;
+use App\lib\Db;
 
 abstract class Model
 {
@@ -12,6 +12,5 @@ abstract class Model
     {
         $this->db = new Db;
     }
-
 
 }

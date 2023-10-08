@@ -1,8 +1,8 @@
 <?php
 
-namespace application\controllers;
+namespace App\controllers;
 
-use application\core\Controller;
+use App\core\Controller;
 
 class MainController extends Controller
 {
@@ -11,7 +11,6 @@ class MainController extends Controller
         $vars = [
                 'news' => $result,
         ];
-
 
         $this->view->render('Главная страница', $vars);
     }

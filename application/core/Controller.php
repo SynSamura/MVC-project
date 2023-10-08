@@ -1,15 +1,13 @@
 <?php
 
-namespace application\core;
-
-use application\core\View;
+namespace App\core;
 
 class Controller
 {
-
     public $route;
     public $view;
     public $acl;
+    public $model;
 
     public function __construct($route)
     {
@@ -20,22 +18,19 @@ class Controller
         $this->view = new View($route);
         $this->model = $this->LoadModel($route['controllers']);
     }
-
     /**
      * Подключение Моделей
      *
      * @param $name
      * @return mixed|void
-
      */
     public function LoadModel($name)
     {
-        $pach = 'application\models\\' . ucfirst($name);
+        $pach = 'App\models\\' . ucfirst($name);
         if (class_exists($pach)) {
             return new $pach;
         }
     }
-
     /**
      * Контроль доступа
      *
